@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
-import arrowImg from '../images/left-arrow.png';
+import arrowNextImg from '../images/right-arrow.png';
+import arrowBackImg from '../images/left-arrow.png';
 
 const SIZE = 40;
 
@@ -21,11 +22,13 @@ export default class MainScreen extends Component {
 			isLoading: false,
 		};
 
-		this._onPress = this._onPress.bind(this);
+		this._onPressNext = this._onPressNext.bind(this);
+        this._onPressBack = this._onPressBack.bind(this);
+        this.buttonAnimated = new Animated.Value(0);
 		this.growAnimated = new Animated.Value(0);
 	}
 
-	_onPress() {
+	_onPressNext() {
 		if (this.state.isLoading) return;
 
 		this.setState({ isLoading: true });
@@ -38,10 +41,34 @@ export default class MainScreen extends Component {
 				easing: Easing.linear,
 			}
 		).start();
-
 		setTimeout(() => {
-            Actions.loginScreen();
-		}, 500);
+            Actions.secondScreen();
+            this.setState({ isLoading: false });
+			this.buttonAnimated.setValue(0);
+			this.growAnimated.setValue(0);
+		}, 200);
+    }
+
+    _onPressBack() {
+		if (this.state.isLoading) return;
+
+		this.setState({ isLoading: true });
+
+		Animated.timing(
+			this.growAnimated,
+			{
+				toValue: 1,
+				duration: 300,
+				easing: Easing.linear,
+			}
+		).start();
+		setTimeout(() => {
+            if (Actions.length > 0) {
+                Actions.pop();
+            } else {
+                Actions.loginScreen();
+            }
+		}, 200);
 	}
 
 	render() {
@@ -49,16 +76,22 @@ export default class MainScreen extends Component {
 			inputRange: [0, 1],
 			outputRange: [1, SIZE],
 		});
-
 		return (
 			<View style={styles.container}>
                 <Text style={styles.title}>Welcome to my app!</Text>
-				<TouchableOpacity onPress={this._onPress}
-					style={styles.button}
-					activeOpacity={1}>
-					<Image style={styles.image} source={arrowImg} />
-				</TouchableOpacity>
-				<Animated.View style={[ styles.circle, {transform: [{scale: changeScale}]} ]} />
+                <View style={styles.groupBtn}>
+                    <TouchableOpacity onPress={this._onPressBack}
+                        style={styles.button}
+                        activeOpacity={1}>
+                        <Image style={styles.image} source={arrowBackImg} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this._onPressNext}
+                        style={styles.button}
+                        activeOpacity={1}>
+                        <Image style={styles.image} source={arrowNextImg} />
+                    </TouchableOpacity>
+                </View>
+                <Animated.View style={[ styles.circle, {transform: [{scale: changeScale}]} ]} />
 			</View>
 		);
 	}
@@ -75,12 +108,18 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'lightblue'   
     },
+    groupBtn: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
 	button: {
 		alignItems: 'center',
 		justifyContent: 'center',
 		width: SIZE,
 		height: SIZE,
-		borderRadius: 100,
+        borderRadius: 100,
+        margin: 10,
 		zIndex: 99,
 		backgroundColor: 'lightblue',
 	},
