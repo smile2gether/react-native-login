@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Dimensions from 'Dimensions';
 import {
 	StyleSheet,
@@ -6,7 +6,7 @@ import {
 	Text,
 } from 'react-native';
 
-export default class SignupSection extends React.Component {
+export default class SignupSection extends Component {
 	render() {
 		return (
 			<View style={styles.container}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Dimensions from 'Dimensions';
 import {
 	StyleSheet,
@@ -7,7 +7,7 @@ import {
 
 import bgSrc from '../images/wallpaper.jpeg';
 
-export default class Wallpaper extends React.Component {
+export default class Wallpaper extends Component {
 	render() {
 		return (
 			<ImageBackground style={styles.picture} source={bgSrc}>

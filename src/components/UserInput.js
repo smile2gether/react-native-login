@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes  from 'prop-types';
 import Dimensions from 'Dimensions';
 import {
@@ -8,7 +8,7 @@ import {
 	Image,
 } from 'react-native';
 
-export default class UserInput extends React.Component {
+export default class UserInput extends Component {
 	static propTypes = {
 		source: PropTypes.number.isRequired,
 		placeholder: PropTypes.string.isRequired,

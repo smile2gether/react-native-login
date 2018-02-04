@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Scene, Router, Actions, ActionCons } from 'react-native-router-flux';
 import LoginScreen from './LoginScreen'
 import MainScreen from './MainScreen'
 
-import usernameImg from '../images/username.png';
-import bgSrc from '../images/wallpaper.jpeg';
-export default class App extends React.Component<{}> {
+
+export default class App extends Component<{}> {
   render() {
     return (
         <Router>

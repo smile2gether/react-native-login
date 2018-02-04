@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
 	StyleSheet,
 	View,
@@ -8,7 +8,7 @@ import {
 
 import logoImg from '../images/logo.png';
 
-export default class Logo extends React.Component {
+export default class Logo extends Component {
     render() {
 		return (
 			<View style={styles.container}>

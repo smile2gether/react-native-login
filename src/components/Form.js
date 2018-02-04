@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Dimensions from 'Dimensions';
 import {
 	StyleSheet,
@@ -17,7 +17,7 @@ import usernameImg from '../images/username.png';
 import passwordImg from '../images/password.png';
 import eyeImg  from '../images/eye_black.png';
 
-export default class Form extends React.Component {
+export default class Form extends Component {
 	constructor(props) {
     super(props);
     this.state = {

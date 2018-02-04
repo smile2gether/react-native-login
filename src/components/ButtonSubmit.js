@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Dimensions from 'Dimensions';
 import {
 	StyleSheet,
@@ -16,7 +16,7 @@ const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 const MARGIN = 40;
 
-export default class ButtonSubmit extends React.Component {
+export default class ButtonSubmit extends Component {
 	constructor() {
 		super();
 
