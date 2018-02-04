@@ -3,6 +3,7 @@
 ```
 npm install
 ```
+##### run the project by the following commands
 
 ```
 react-native run-ios
